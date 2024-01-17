@@ -48,7 +48,7 @@ const TeamDistribution = () => {
 
   return (
     <div>
-      <h1>Destribuição de times</h1>
+      <h1>Distribuição de times</h1>
       <label>
         Lista com os participantes:
         <input
