@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const TeamDistribution = () => {
-  const [peopleList, setPeopleList] = useState('');
+  const [peopleList, setPeopleList] = useState("");
   const [numTeams, setNumTeams] = useState(0);
   const [teams, setTeams] = useState([]);
   const [peoplePerTeam, setPeoplePerTeam] = useState(0);
@@ -16,12 +16,13 @@ const TeamDistribution = () => {
 
   function removeNumbersFromString(inputString) {
     // Utiliza uma expressão regular para remover os números
-    return inputString.replace(/\d/g, '');
+    return inputString.replace(/\d/g, "");
   }
-  
+
   const calculateTeams = () => {
-    const peopleWtthoutNumbers = removeNumbersFromString(peopleList); // VEJA ISSO AQUI, DEPOIS ////////
-    const peopleArray = peopleWtthoutNumbers.split(". ").map((name) => name.trim());
+    const peopleArray = peopleWtthoutNumbers
+      .split(". ")
+      .map((name) => name.trim());
     const maxPeoplePerTeam = Math.ceil(peopleArray.length / 7); // Pode ajustar o limite conforme necessário
     setPeoplePerTeam(maxPeoplePerTeam);
 
@@ -70,7 +71,7 @@ const TeamDistribution = () => {
           <h2>Time {team.teamNumber}</h2>
           <ul>
             {team.members.map((member, index) => (
-              <li key={index}>{member}</li>
+              <li key={index}>{removeNumbersFromString(member)}</li>
             ))}
           </ul>
         </div>
