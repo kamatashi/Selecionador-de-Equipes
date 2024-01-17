@@ -33,9 +33,9 @@ const TeamDistribution = () => {
 
   return (
     <div>
-      <h1>Team Distribution</h1>
+      <h1>Destribuição de Times</h1>
       <label>
-        Number of People:
+        Número de pessoas:
         <input
           type="number"
           value={numPeople}
@@ -44,7 +44,7 @@ const TeamDistribution = () => {
       </label>
       <br />
       <label>
-        Number of Teams:
+        Número de times:
         <input type="number" value={numTeams} onChange={handleNumTeamsChange} />
       </label>
       <br />
