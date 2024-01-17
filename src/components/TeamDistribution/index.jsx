@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const TeamDistribution = () => {
-  const [numPeople, setNumPeople] = useState(0);
+  const [peopleList, setPeopleList] = useState('');
   const [numTeams, setNumTeams] = useState(0);
   const [teams, setTeams] = useState([]);
 
-  const handleNumPeopleChange = (e) => {
-    setNumPeople(e.target.value);
+  const handlePeopleListChange = (e) => {
+    setPeopleList(e.target.value);
   };
 
   const handleNumTeamsChange = (e) => {
@@ -14,18 +14,12 @@ const TeamDistribution = () => {
   };
 
   const distributeTeams = () => {
-    const peopleArray = Array.from(
-      { length: numPeople },
-      (_, index) => index + 1,
-    );
+    const peopleArray = peopleList.split('. ').map((name) => name.trim());
     const shuffledPeople = peopleArray.sort(() => Math.random() - 0.5);
 
     const distributedTeams = Array.from({ length: numTeams }, (_, index) => ({
       teamNumber: index + 1,
-      members: shuffledPeople.slice(
-        index * Math.ceil(numPeople / numTeams),
-        (index + 1) * Math.ceil(numPeople / numTeams),
-      ),
+      members: shuffledPeople.slice(index * Math.ceil(peopleArray.length / numTeams), (index + 1) * Math.ceil(peopleArray.length / numTeams)),
     }));
 
     setTeams(distributedTeams);
@@ -33,14 +27,10 @@ const TeamDistribution = () => {
 
   return (
     <div>
-      <h1>Destribuição de Times</h1>
+      <h1>Destribuição de times</h1>
       <label>
         Número de pessoas:
-        <input
-          type="number"
-          value={numPeople}
-          onChange={handleNumPeopleChange}
-        />
+        <input type="text" value={peopleList} onChange={handlePeopleListChange} />
       </label>
       <br />
       <label>
@@ -52,10 +42,10 @@ const TeamDistribution = () => {
 
       {teams.map((team) => (
         <div key={team.teamNumber}>
-          <h2>Team {team.teamNumber}</h2>
+          <h2>Time {team.teamNumber}</h2>
           <ul>
-            {team.members.map((member) => (
-              <li key={member}>Person {member}</li>
+            {team.members.map((member, index) => (
+              <li key={index}>{member}</li>
             ))}
           </ul>
         </div>
