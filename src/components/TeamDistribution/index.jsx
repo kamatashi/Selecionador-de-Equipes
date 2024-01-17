@@ -29,7 +29,7 @@ const TeamDistribution = () => {
     <div>
       <h1>Destribuição de times</h1>
       <label>
-        Número de pessoas:
+        Lista com os participantes:
         <input type="text" value={peopleList} onChange={handlePeopleListChange} />
       </label>
       <br />
