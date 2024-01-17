@@ -38,7 +38,7 @@ const TeamDistribution = () => {
         <input type="number" value={numTeams} onChange={handleNumTeamsChange} />
       </label>
       <br />
-      <button onClick={distributeTeams}>Distribute Teams</button>
+      <button onClick={distributeTeams}>Clique para destribuir</button>
 
       {teams.map((team) => (
         <div key={team.teamNumber}>
