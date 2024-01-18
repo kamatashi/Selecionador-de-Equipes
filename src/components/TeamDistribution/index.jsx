@@ -19,11 +19,8 @@ const TeamDistribution = () => {
     inputString.replace(/\d/g, "");
 
   const calculateTeams = () => {
-    console.log("Alrigth");
     const limitTeams = 7;
-    const peopleArray = peopleList
-      .split(". ")
-      .map((name) => name.trim());
+    const peopleArray = peopleList.split(". ").map((name) => name.trim());
     const maxPeoplePerTeam = Math.ceil(peopleArray.length / limitTeams); // Pode ajustar o limite conforme necessário
     setPeoplePerTeam(maxPeoplePerTeam);
 
@@ -31,6 +28,17 @@ const TeamDistribution = () => {
     const calculatedNumTeams = Math.ceil(peopleArray.length / maxPeoplePerTeam);
     setNumTeams(calculatedNumTeams);
   };
+
+  function calculateMaxPeapleTeam() {
+    // Garante que minPeoplePerTeam seja pelo menos 1
+    const peopleArray = peopleList.split(". ").map((name) => name.trim());
+    const minPeoplePerTeam = Math.max(1, minPeoplePerTeam);
+
+    // Calcula o número ideal de times
+    const idealNumTeams = Math.ceil(peopleArray / minPeoplePerTeam);
+
+    return idealNumTeams;
+  }
 
   const distributeTeams = () => {
     const peopleArray = peopleList.split(". ").map((name) => name.trim());
@@ -62,7 +70,8 @@ const TeamDistribution = () => {
       <label>
         Número de times:
         <input type="number" value={numTeams} onChange={handleNumTeamsChange} />
-        <Button label="Sugerir" onClick={calculateTeams} />
+        <Button label="Sugerir Min" onClick={calculateTeams} />
+        <Button label="Sugerir Max" onClick={calculateMaxPeapleTeam} />
       </label>
       <br />
       <button onClick={distributeTeams}>Clique para distribuir</button>
