@@ -62,7 +62,9 @@ const TeamDistribution = () => {
       <label>
         Número de times:
         <input type="number" value={numTeams} onChange={handleNumTeamsChange} />
-        <Button label="Sugerir" onClick={calculateTeams} />
+        {
+            //<Button label="Sugerir" onClick={calculateTeams} />
+        }
       </label>
       <br />
       <button onClick={distributeTeams}>Clique para distribuir</button>
