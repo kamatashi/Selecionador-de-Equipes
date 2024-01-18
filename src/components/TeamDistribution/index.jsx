@@ -64,7 +64,7 @@ const TeamDistribution = () => {
         <button onClick={calculateTeams}>Número ideal de times</button>
       </label>
       <br />
-      <button onClick={distributeTeams}>Clique para destribuir</button>
+      <button onClick={distributeTeams}>Clique para distribuir</button>
 
       {teams.map((team) => (
         <div key={team.teamNumber}>
