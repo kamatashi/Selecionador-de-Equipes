@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "../Buttons/Button";
 
 const TeamDistribution = () => {
   const [peopleList, setPeopleList] = useState("");
@@ -14,11 +15,13 @@ const TeamDistribution = () => {
     setNumTeams(e.target.value);
   };
 
-  const removeNumbersFromString = (inputString) => inputString.replace(/\d/g, "");
+  const removeNumbersFromString = (inputString) =>
+    inputString.replace(/\d/g, "");
 
   const calculateTeams = () => {
+    console.log("Alrigth");
     const limitTeams = 7;
-    const peopleArray = peopleWtthoutNumbers
+    const peopleArray = peopleList
       .split(". ")
       .map((name) => name.trim());
     const maxPeoplePerTeam = Math.ceil(peopleArray.length / limitTeams); // Pode ajustar o limite conforme necessário
@@ -59,11 +62,10 @@ const TeamDistribution = () => {
       <label>
         Número de times:
         <input type="number" value={numTeams} onChange={handleNumTeamsChange} />
-        <button onClick={calculateTeams}>Número ideal de times</button>
-        <Button />
+        <Button label="Sugerir" onClick={calculateTeams} />
       </label>
       <br />
-      <button onClick={distributeTeams}>Clique para destribuir</button>
+      <button onClick={distributeTeams}>Clique para distribuir</button>
 
       {teams.map((team) => (
         <div key={team.teamNumber}>
