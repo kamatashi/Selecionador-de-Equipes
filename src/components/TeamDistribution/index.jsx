@@ -15,11 +15,9 @@ const TeamDistribution = () => {
     setNumTeams(e.target.value);
   };
 
-  const removeNumbersFromString = (inputString) =>
-    inputString.replace(/\d/g, "");
+  const removeNumberPoints = (inputString) => inputString.replace(/\d/g, "").replace(".", "");
 
   const calculateTeams = () => {
-    console.log("Alrigth");
     const limitTeams = 7;
     const peopleArray = peopleList
       .split(". ")
@@ -33,7 +31,7 @@ const TeamDistribution = () => {
   };
 
   const distributeTeams = () => {
-    const peopleArray = peopleList.split(". ").map((name) => name.trim());
+    const peopleArray = peopleList.split(" ").map((name) => name.trim());
     const shuffledPeople = peopleArray.sort(() => Math.random() - 0.5);
 
     const distributedTeams = Array.from({ length: numTeams }, (_, index) => ({
@@ -74,7 +72,7 @@ const TeamDistribution = () => {
           <h2>Time {team.teamNumber}</h2>
           <ul>
             {team.members.map((member, index) => (
-              <li key={index}>{removeNumbersFromString(member)}</li>
+              <li key={index}>{removeNumberPoints(member)}</li>
             ))}
           </ul>
         </div>
