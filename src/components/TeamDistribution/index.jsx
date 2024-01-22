@@ -15,9 +15,7 @@ const TeamDistribution = () => {
     setNumTeams(e.target.value);
   };
 
-  const removeNumber = (inputString) => inputString.replace(/\d/g, ""); // work
-  const removePoints = (inputString) => inputString.replace(".", "");
-  const removeSpaces = (inputString) => inputString.replaceAll(" ", "");
+  const removeNumber = (inputString) => inputString.replace(/[.\d\s]/g, '');
 
   const calculateTeams = () => {
     const limitTeams = 7;
@@ -71,7 +69,7 @@ const TeamDistribution = () => {
           <h2>Time {team.teamNumber}</h2>
           <ul>
             {team.members.map((member, index) => (
-              <li key={index}>{removeSpaces(removeNumber(member))}</li>
+              <li key={index}>{(removeNumber(member))}</li>
             ))}
           </ul>
         </div>
