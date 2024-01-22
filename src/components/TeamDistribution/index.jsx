@@ -15,13 +15,13 @@ const TeamDistribution = () => {
     setNumTeams(e.target.value);
   };
 
-  const removeNumberPoints = (inputString) => inputString.replace(/\d/g, "").replace(".", "");
+  const removeNumber = (inputString) => inputString.replace(/\d/g, ""); // work
+  const removePoints = (inputString) => inputString.replace(".", "");
+  const removeSpaces = (inputString) => inputString.replaceAll(" ", "");
 
   const calculateTeams = () => {
     const limitTeams = 7;
-    const peopleArray = peopleList
-      .split(". ")
-      .map((name) => name.trim());
+    const peopleArray = peopleList.split(" ").map((name) => name.trim());
     const maxPeoplePerTeam = Math.ceil(peopleArray.length / limitTeams); // Pode ajustar o limite conforme necessário
     setPeoplePerTeam(maxPeoplePerTeam);
 
@@ -31,7 +31,7 @@ const TeamDistribution = () => {
   };
 
   const distributeTeams = () => {
-    const peopleArray = peopleList.split(" ").map((name) => name.trim());
+    const peopleArray = peopleList.split(". ").map((name) => name.trim());
     const shuffledPeople = peopleArray.sort(() => Math.random() - 0.5);
 
     const distributedTeams = Array.from({ length: numTeams }, (_, index) => ({
@@ -60,9 +60,8 @@ const TeamDistribution = () => {
       <label>
         Número de times:
         <input type="number" value={numTeams} onChange={handleNumTeamsChange} />
-        {
-            //<Button label="Sugerir" onClick={calculateTeams} />
-        }
+        {}
+        <Button label="Sugerir" onClick={calculateTeams} />
       </label>
       <br />
       <button onClick={distributeTeams}>Clique para distribuir</button>
@@ -72,7 +71,7 @@ const TeamDistribution = () => {
           <h2>Time {team.teamNumber}</h2>
           <ul>
             {team.members.map((member, index) => (
-              <li key={index}>{removeNumberPoints(member)}</li>
+              <li key={index}>{removeSpaces(removeNumber(member))}</li>
             ))}
           </ul>
         </div>
