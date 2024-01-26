@@ -15,12 +15,16 @@ const TeamDistribution = () => {
     setNumTeams(e.target.value);
   };
 
-  const removeNumber = (inputString) => inputString.replace(/[.\d\s]/g, '');
+  const removeNumber = (inputList) => {
+    // Utiliza uma expressão regular para remover números
+    return inputList.replace(/\d+/g, '').trim();
+  };
 
-  const calculateTeams = () => {
+  const calculateTeams = (  ) => {
     const limitTeams = 7;
-    const peopleArray = peopleList.split(" ").map((name) => name.trim());
-    const maxPeoplePerTeam = Math.ceil(peopleArray.length / limitTeams); // Pode ajustar o limite conforme necessário
+    const peopleArray = removeNumber(peopleList).split(" ").map((name) => name.trim());
+    const maxPeoplePerTeam = Math.ceil(peopleArray.length / limitTeams);
+
     setPeoplePerTeam(maxPeoplePerTeam);
 
     // Calcula o número de times com base no limite de pessoas por time
@@ -29,7 +33,7 @@ const TeamDistribution = () => {
   };
 
   const distributeTeams = () => {
-    const peopleArray = peopleList.split(". ").map((name) => name.trim());
+    const peopleArray = removeNumber(peopleList).split(". ").map((name) => name.trim());
     const shuffledPeople = peopleArray.sort(() => Math.random() - 0.5);
 
     const distributedTeams = Array.from({ length: numTeams }, (_, index) => ({
@@ -69,7 +73,7 @@ const TeamDistribution = () => {
           <h2>Time {team.teamNumber}</h2>
           <ul>
             {team.members.map((member, index) => (
-              <li key={index}>{(removeNumber(member))}</li>
+              <li key={index}>{removeNumber(member)}</li>
             ))}
           </ul>
         </div>

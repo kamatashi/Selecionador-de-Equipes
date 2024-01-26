@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-const RoundRobinScheduler = () => {
-  const [numTeams, setNumTeams] = useState(4); // Altere conforme necessário
+const RoundRobinScheduler = (props) => {
+  const [numTeams, setNumTeams] = useState(props.numTeams); // Altere conforme necessário
   const [matches, setMatches] = useState([]);
 
   const generateRoundRobinMatches = (numTeams) => {
@@ -47,22 +47,22 @@ const RoundRobinScheduler = () => {
 
   return (
     <div>
-      <h1>Round Robin Scheduler</h1>
+      <h2>Gerador de Partidas</h2>
       <label>
         Number of Teams:
         <input type="number" value={numTeams} onChange={handleNumTeamsChange} />
       </label>
       <button onClick={handleGenerateMatches}>Generate Matches</button>
 
-      <h2>Matches:</h2>
+      <h2>Partidas:</h2>
       <ul>
         {matches.map((round, roundIndex) => (
           <li key={roundIndex}>
-            <strong>Round {roundIndex + 1}:</strong>
+            <strong>Rodada {roundIndex + 1}:</strong>
             <ul>
               {round.map((match, matchIndex) => (
                 <li key={matchIndex}>
-                  Team {match.team1} vs Team {match.team2}
+                  Time {match.team1} vs Time {match.team2}
                 </li>
               ))}
             </ul>
