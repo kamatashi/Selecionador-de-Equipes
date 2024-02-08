@@ -18,8 +18,9 @@ const TeamDistribution = () => {
   const removeNumber = (inputString) => inputString.replace(/[.\d\s]/g, '');
 
   const calculateTeams = () => {
+    
     const limitTeams = 7;
-    const peopleArray = peopleList.split(" ").map((name) => name.trim());
+    const peopleArray = peopleList.split(". ").map((name) => name.trim());
     const maxPeoplePerTeam = Math.ceil(peopleArray.length / limitTeams); // Pode ajustar o limite conforme necessário
     setPeoplePerTeam(maxPeoplePerTeam);
 
@@ -29,8 +30,11 @@ const TeamDistribution = () => {
   };
 
   const distributeTeams = () => {
-    const peopleArray = peopleList.split(". ").map((name) => name.trim());
+    alert(peopleList)
+    const peopleArray = peopleList.split(". ")
+      .map((name) => name.trim());
     const shuffledPeople = peopleArray.sort(() => Math.random() - 0.5);
+    alert(peopleArray)
 
     const distributedTeams = Array.from({ length: numTeams }, (_, index) => ({
       teamNumber: index + 1,
